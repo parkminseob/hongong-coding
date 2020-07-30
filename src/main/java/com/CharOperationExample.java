@@ -11,5 +11,7 @@ public class CharOperationExample {
       System.out.println("c2: " + c2); //A
       //System.out.println("c3: " + c3);
       
+      // char타입이 유니코드
+      
     }
 }
