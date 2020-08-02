@@ -5,17 +5,18 @@ import java.sql.Date;
 
 public class PracticeApp3 {
   public static void main(String[] args) {
+    class Task {
+      int no;
+      String content;
+      Date edDate;
+      String owner;
+      int state;
+    }
     
     Scanner scanner = new Scanner(System.in);
     
     final int MAX_LENGTH = 4;
-    
-    int[] no = new int[MAX_LENGTH];
-    String[] content = new String[MAX_LENGTH];
-    Date[] edDate = new Date[MAX_LENGTH];
-    String[] owner = new String[MAX_LENGTH];
-    int[] state = new int[MAX_LENGTH];
-    
+    Task[] task = new Task[MAX_LENGTH];
     
     System.out.println("[작업]");
     System.out.print("프로젝트? ");
@@ -23,27 +24,33 @@ public class PracticeApp3 {
    
     int count = 0;
     for (int i = 0; i < MAX_LENGTH; i++) {
+
+      Task t = new Task();
+      
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(scanner.nextLine());
+      t.no = Integer.parseInt(scanner.nextLine());
       
       System.out.print("내용? ");
-      content[i] = scanner.nextLine();
+      t.content = scanner.nextLine();
       
       System.out.print("완료일? ");
-      edDate[i] = Date.valueOf(scanner.nextLine());
+      t.edDate = Date.valueOf(scanner.nextLine());
       
       System.out.println("상태? ");
       System.out.println("0 : 신규 ");
       System.out.println("1 : 진행중 ");
       System.out.println("2 : 완료 ");
       System.out.println("> ");
-      state[i] = Integer.valueOf(scanner.nextLine());
+      t.state = Integer.parseInt(scanner.nextLine());
       
       System.out.println("담당자? ");
-      owner[i] = scanner.nextLine();
+      t.owner = scanner.nextLine();
       
       count++;
       System.out.println();
+      
+      task[i] = t;
+      
       System.out.println("계속 입력하시겠습니까?(y/N)");
       String response = scanner.nextLine();
       
@@ -59,8 +66,10 @@ public class PracticeApp3 {
     System.out.printf("[%s]\n" , project);
     for (int i = 0; i < count; i++) {
       
+      Task t = task[i];
+      
       String stateMent = null;
-      switch (state[i]) {
+      switch (t.state) {
       case 1 : 
         stateMent = "진행중";
         break;
@@ -71,7 +80,11 @@ public class PracticeApp3 {
         stateMent = "신규";
       }
       System.out.printf("%d, %s, %s, %s, %s\n", 
-          no[i], content[i], edDate[i], stateMent, owner[i]);
+          t.no,
+          t.content,
+          t.edDate,
+          stateMent,
+          t.owner);
     }
     }
 }
