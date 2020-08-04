@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AppPractice1 {
   static Scanner keyboardScan = new Scanner(System.in);
-  
+
   //회원 데이터
   static final int LENGTH = 100;
   static int[] no = new int[LENGTH];
@@ -16,10 +16,10 @@ public class AppPractice1 {
   static String[] tel = new String[LENGTH];
   static Date[] registeredDate = new Date[LENGTH];
   static int size = 0;
-  
+
   //프로젝트 데이터
   static final int PLENGTH = 100;
-  static int[] pno = new int[LENGTH];
+  static int[] pno = new int[PLENGTH];
   static String[] ptitle = new String[PLENGTH];
   static String[] pcontent = new String[PLENGTH];
   static Date[] pstartDate = new Date[PLENGTH];
@@ -27,9 +27,9 @@ public class AppPractice1 {
   static String[] powner = new String[PLENGTH];
   static String[] pmembers = new String[PLENGTH];
   static int psize = 0;
-  
-  
-  //작업 데이터 
+
+
+  //작업 데이터
   static final int TLENGTH = 100;
   static int[] tno = new int[TLENGTH];
   static String[] tcontent = new String[TLENGTH];
@@ -39,7 +39,7 @@ public class AppPractice1 {
   static int tsize = 0;
 
   public static void main(String[] args) {
-    
+
     loop :
     while(true) {
       String command = promptString("명령> ");
@@ -48,27 +48,27 @@ public class AppPractice1 {
       case "/member/add" :
         addMember();
         break;
-        
+
       case "/member/list" :
         listMember();
         break;
-        
+
       case "/project/add" :
         addProject();
         break;
-        
+
       case "/project/list" :
         listProject();
         break;
-        
+
       case "/task/add" :
         addTask();
         break;
-        
+
       case "/task/list" :
         listTask();
         break;
-        
+
       case "exit" :
       case "quit" :
         System.out.println("종료!");
@@ -79,11 +79,11 @@ public class AppPractice1 {
         System.out.println();
     }
     keyboardScan.close();
-    
+
   }
   static void listTask() {
     System.out.println("[작업 목록]");
-    
+
     for (int i = 0; i < tsize; i++) {
       String stateLabel = null;
       switch (tstatus[i]) {
@@ -96,13 +96,13 @@ public class AppPractice1 {
         default:
           stateLabel = "신규";
       }
-      System.out.printf("%d, %s, %s, %s, %s\n", 
+      System.out.printf("%d, %s, %s, %s, %s\n",
           tno[i], tcontent[i], tdeadline[i], stateLabel, towner[i]);
     }
   }
   static void addTask() {
     System.out.println("[작업 등록]");
-    
+
     tno[tsize] = promptInt("번호? ");
     tcontent[tsize] = promptString("내용? ");
     tdeadline[tsize] = promptDate("완료일? ");
@@ -113,7 +113,7 @@ public class AppPractice1 {
   static void listProject() {
     System.out.println("[프로젝트 목록]");
     for (int i = 0; i < size; i++) {
-      System.out.printf("%d, %s, %s, %s, %s\n", 
+      System.out.printf("%d, %s, %s, %s, %s\n",
           pno[i], ptitle[i], pstartDate[i], pendDate[i], powner[i]);
     }
   }
@@ -130,7 +130,7 @@ public class AppPractice1 {
   }
   static void addMember() {
     System.out.println("[회원 등록]");
-    
+
     no[size] = promptInt("번호? ");
     name[size] = promptString("이름? ");
     email[size] = promptString("이메일? ");
@@ -143,22 +143,22 @@ public class AppPractice1 {
   }
   static void listMember() {
     System.out.println("[회원 목록]");
-    
+
     for (int i = 0; i < size; i++) {
       System.out.printf("%d, %s, %s, %s, %s\n",
           no[i], name[i], email[i], tel[i], registeredDate[i]);
     }
   }
-  
+
   static String promptString(String title) {
     System.out.print(title);
     return keyboardScan.nextLine();
   }
-  
+
   static int promptInt(String title) {
     return Integer.parseInt(promptString(title));
   }
-  
+
   static Date promptDate(String title) {
     return Date.valueOf(promptString(title));
   }
