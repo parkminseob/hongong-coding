@@ -1,5 +1,6 @@
 package com.util;
-public class Calculator {
+
+public class Cal {
 
   public int result = 0;
 
@@ -16,8 +17,8 @@ public class Calculator {
     this.result /= value;
   }
   public static void resultCal(int value) {
-    System.out.println("-------------");
-    System.out.printf("result ==> %d\n", value);
-    System.out.println("-------------");
+    System.out.println("*-*-*-*-*-*-*");
+    System.out.printf("result ===> %d\n", value);
+    System.out.println("*-*-*-*-*-*-*");
   }
 }
