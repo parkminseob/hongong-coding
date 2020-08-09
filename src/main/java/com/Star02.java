@@ -6,7 +6,6 @@ public class Star02 {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
-    System.out.println("별 개수 입력");
     int star = scanner.nextInt();
 
     for (int i = 1; i <= star; i++) {
