@@ -108,7 +108,7 @@ public class AppPractice1 {
     tdeadline[tsize] = promptDate("완료일? ");
     tstatus[tsize] = promptInt("상태?\n0 : 신규\n1 : 진행중\n2 : 완료\n> ");
     towner[tsize] = promptString("담당자? ");
-    size++;
+    tsize++;
   }
   static void listProject() {
     System.out.println("[프로젝트 목록]");
