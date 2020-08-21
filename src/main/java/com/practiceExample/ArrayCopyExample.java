@@ -1,4 +1,4 @@
-package com;
+package com.practiceExample;
 
 public class ArrayCopyExample {
  public static void main(String[] args) {

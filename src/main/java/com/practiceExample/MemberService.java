@@ -1,4 +1,4 @@
-package com;
+package com.practiceExample;
 
 public class MemberService {
  boolean login(String id, String password) {

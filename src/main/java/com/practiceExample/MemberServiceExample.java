@@ -1,4 +1,4 @@
-package com;
+package com.practiceExample;
 
 public class MemberServiceExample {
   public static void main(String[] args) {
