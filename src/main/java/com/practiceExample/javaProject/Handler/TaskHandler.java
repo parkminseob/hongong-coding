@@ -1,27 +1,21 @@
 package com.practiceExample.javaProject.Handler;
 
-import java.sql.Date;
+import com.practiceExample.javaProject.domain.Task;
 import com.practiceExample.javaProject.util.Prompt;
 
 public class TaskHandler {
 
-  static class Task{
-    int no;
-    String content;
-    Date endDate;
-    int status;
-    String owner;
-    String project;
+  public MemberHandler memberHandler;
+  
+  TaskList taskList = new TaskList();
+  public TaskHandler(MemberHandler memberHandler) {
+    this.memberHandler = memberHandler;
   }
-
-  final static int TLENGTH = 5;
-  static int tsize = 0;
-  static Task[] tasks = new Task[TLENGTH];
-
-  public static void listTask() {
+  
+  public void list() {
     System.out.println("[작업 목록]");
-    for(int i = 0; i < tsize; i++) {
-      Task t = tasks[i];
+    Task[] tasks = taskList.toArray();
+    for(Task t : tasks) {
       String statusLable = null;
       switch(t.status) {
         case 1: statusLable = "진행중"; break;
@@ -33,14 +27,28 @@ public class TaskHandler {
     }
   }
 
-  public static void addTask() {
+  public void add() {
+    System.out.println("[작업 등록]");
     Task task = new Task();
     task.no = Prompt.promptInt("번호? ");
     task.content = Prompt.promptString("내용? ");
     task.endDate = Prompt.promptDate("완료일? ");
     task.status = Prompt.promptInt("상태?\n0: 신규\n1: 진행중\n2: 완료\n> ");
-    task.owner = Prompt.promptString("담당자? ");
-    tasks[tsize++] = task;
+    
+    while(true) {
+      String name = Prompt.promptString("담당자?(취소: 빈 문자열)");
+      if(name.length() == 0) {
+        System.out.println("작업 등록을 취소합니다.");
+        return;
+      } else if(memberHandler.findByName(name) != null) {
+        task.owner = name;
+        break;
+      } else {
+        System.out.println("등록된 회원이 아닙니다.");
+      }
+    }
+    System.out.println("작업 등록을 완료했습니다.");
+    taskList.add(task);
   }
 
 }
