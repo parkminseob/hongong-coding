@@ -1,4 +1,4 @@
-package com.bakjoon;
+package com.baekjoon;
 
 public class backjoon10172 {
   public static void main(String[] args) {
