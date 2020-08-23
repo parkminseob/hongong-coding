@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class backjoon8958 {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    int testCase = scanner.nextInt();
-    scanner.nextLine();
+    int testCase = Integer.parseInt(scanner.nextLine());
     String[] OX = new String[testCase];
     
     for(int i = 0; i < OX.length; i++) {
