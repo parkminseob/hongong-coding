@@ -116,9 +116,11 @@ public class MyArrayList {
   
   public Object[] toArray() {
     Object[] arr = new Object[this.size];
-    for(int i = 0; i < arr.length; i++) {
-      arr[i] = elementData[i];
-    }
+    
+    
+//    for(int i = 0; i < arr.length; i++) {
+//      arr[i] = elementData[i];
+//    }
     return arr;
   }
 }
