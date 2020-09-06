@@ -1,7 +1,5 @@
 package com.practiceExample.LinkedList;
 
-import java.lang.reflect.Array;
-
 // 1) LinkedList 클래스 정의  
 // 2) 값을 담을 노드 클래스 설계
 // 3) 첫 번째 노드와 마지막 노드의 주소를 담을 필드를 추가한다.
@@ -15,31 +13,29 @@ import java.lang.reflect.Array;
 // 9) 목록의 데이터를 새 배열에 담아 리턴하는 toArray()메서드를 정의한다.
 // 10) 인스턴스 필드에 대해 캡슐화를 적용한다.
 //     목록 크기를 리턴하는 size()를 추가로 정의한다.
-// 11) 제네릭 적용 
-// 12) 파라미터로 받은 배열에 값을 채워주는 toArray(E[]) 메서드를 추가한다.
-public class MyLinkedList<E> {
-
+public class MyLinkedList10 {
+ 
   // Node 클래스란?
   // 목록에서 각 항목의 값을 보관하는 객체 역할을 수행한다.
   // 여러 개의 MyLinkedList 객체가 공유하는 클래스이므로
   // 스태틱으로 Node 클래스를 설계한다.
-  private Node<E> first; 
-  private Node<E> last;
+  private Node first; 
+  private Node last;
   private int size; //목록크기 보관 
-
-  static class Node<E>{
-    E value;
-    Node<E> next;
-
-    public Node() {}
-
-    public Node(E value) {
-      this.value = value;
-    }
+  
+  static class Node{
+    Object value;
+    Node next;
+  
+  public Node() {}
+  
+  public Node(Object value) {
+    this.value = value;
   }
-
-  public boolean add(E e) {
-    Node<E> node = new Node<E>();
+  }
+  
+  public boolean add(Object e) {
+    Node node = new Node();
     node.value = e;
     if(first == null) {
       first = node;
@@ -47,36 +43,36 @@ public class MyLinkedList<E> {
       last.next = node;
     }
     last = node;
-
+    
     size++;
     return true;
   }
-
-  public E get(int index) {
+  
+  public Object get(int index) {
     if(index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
     }
-    Node<E> cursor = this.first;
+    Node cursor = this.first;
     for(int i = 0; i < index; i++) {
       cursor = cursor.next;
     }
     return cursor.value;
   }
-
-  public void add(int index, E element) {
+  
+  public void add(int index, Object element) {
     if(index < 0 || index > size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
     }
     size++;
-    Node<E> node = new Node<E>(element);
-
+    Node node = new Node(element);
+    
     if(index == 0) {
       node.next = first;
       first = node;
       return;
     }
-
-    Node<E> cursor = this.first;
+    
+    Node cursor = this.first;
     for(int i = 1; i < index; i++) {
       cursor = cursor.next;
     }
@@ -87,75 +83,59 @@ public class MyLinkedList<E> {
       last = node;
     }
   }
-
-  public E remove(int index) {
+  
+  public Object remove(int index) {
     if(index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
     }
     size--;
 
     if(index == 0) {
-      Node<E> old = first;
+      Node old = first;
       first = old.next;
       old.next = null;
       return old.value;
     }
-
-    Node<E> cursor = first;
+    
+    Node cursor = first;
     for(int i = 1; i < index; i++) {
       cursor = cursor.next;
     }
-    Node<E> old = cursor.next;
+    Node old = cursor.next;
     cursor.next = old.next;
     old.next = null;
-
+    
     if(cursor.next == null) {
       last = cursor;
     }
     return old.value;
   }
-
-  public E set(int index, E element) {
+  
+  public Object set(int index, Object element) {
     if(index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
     }
-    Node<E> cursor = first;
+    Node cursor = first;
     for(int i = 0; i < index; i++) {
       cursor = cursor.next;
     }
-    E old = cursor.value;
+    Object old = cursor.value;
     cursor.value = element;
 
     return old;
   }
-
+  
   public Object[] toArray() {
     Object[] arr = new Object[size];
-    Node<E> cursor = first;
+    Node cursor = first;
     for(int i = 0; i < size; i++) {
       arr[i] = cursor.value;
       cursor = cursor.next;
     }
     return arr;
   }
-
+  
   public int size() {
-    return this.size;
-  }
-
-  @SuppressWarnings("unchecked")
-  public E[] toArray(E[] arr) {
-    if(arr.length < this.size) {
-      Class<?> arrayClassInfo = arr.getClass();
-      Class<?> arrayItemClassInfo = arrayClassInfo.getComponentType();
-
-      arr = (E[]) Array.newInstance(arrayItemClassInfo, this.size());
-    }
-
-    Object[] originArr = this.toArray();
-    for(int i = 0; i < this.size(); i++) {
-      arr[i] = (E) originArr[i];
-    }
-    return arr;
+    return this.size = size;
   }
 }

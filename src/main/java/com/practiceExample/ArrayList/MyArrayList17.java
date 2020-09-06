@@ -1,6 +1,5 @@
 package com.practiceExample.ArrayList;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 // 1) 인스턴스/객체의 주소를 담을 레퍼런스 배열을 준비한다.
@@ -29,20 +28,17 @@ import java.util.Arrays;
 // 15) 배열의 크기를 늘릴 때 자바에서 제공하는 Arrays를 사용한다.
 // 16) ArrayList에 보관되어 있는 인스턴스 목록을 배열로 리턴하는 toArray메서드 정의한다.
 // 17) toArray()에서 배열을 복사할 때 Arrays.copyOf() 메서드를 활용해보자.
-// 18) 제네릭 적용하기
-// 19) 파라미터로 받은 배열에 값을 채워주는 toArray(E[])메서드를 추가한다.
-// 20) 항목의 개수보다 작은 크기의 배열을 전달할 때, 자동으로 새 배열을 만들도록 toArray()메서드 추가
 
-public class MyArrayList<E> {
+public class MyArrayList17 {
   private final static int DEFAULT_CAPACITY = 5;
   private Object[] elementData;
   private int size;
 
-  public MyArrayList() {
+  public MyArrayList17() {
     elementData = new Object[DEFAULT_CAPACITY];
   }
 
-  public MyArrayList(int initialCapacity) {
+  public MyArrayList17(int initialCapacity) {
     if(initialCapacity < DEFAULT_CAPACITY) {
       elementData = new Object[DEFAULT_CAPACITY];
     } else {
@@ -50,7 +46,7 @@ public class MyArrayList<E> {
     }
   }
 
-  public boolean add(E e) {
+  public boolean add(Object e) {
     if(elementData.length == size) {
       grow();
     }
@@ -58,7 +54,7 @@ public class MyArrayList<E> {
     return true;
   }
 
-  public void add(int index, E element) {
+  public void add(int index, Object element) {
     if(index < 0 || index > size) {
       throw new ArrayIndexOutOfBoundsException("유효하지 않은 인덱스 값!");
     }
@@ -81,27 +77,24 @@ public class MyArrayList<E> {
     //    elementData = newArray;
   }
 
-  @SuppressWarnings("unchecked")
-  public E get(int index) {
+  public Object get(int index) {
     if(index < 0 || index >= size) {
       throw new ArrayIndexOutOfBoundsException("유효하지 않은 인덱스 값!");
     }
 
-    return (E)elementData[index];
+    return elementData[index];
   }
 
-  @SuppressWarnings("unchecked")
-  public E set(int index, E element) {
+  public Object set(int index, Object element) {
     if(index < 0 || index >= size) {
       throw new ArrayIndexOutOfBoundsException("유효하지 않은 인덱스 값!");
     }
     Object old = elementData[index];
     elementData[index] = element;
-    return (E) old;
+    return old;
   }
 
-  @SuppressWarnings("unchecked")
-  public E remove(int index) {
+  public Object remove(int index) {
     if(index < 0 || index >= size) {
       throw new ArrayIndexOutOfBoundsException("유효하지 않은 인덱스 값!");
     }
@@ -117,7 +110,7 @@ public class MyArrayList<E> {
     elementData[size] = null; 
     // size--된 뒤 마지막 배열의 빈 항목을
     // null로 초기화 시켜 가비지가 되게 한다.
-    return (E) old;
+    return old;
   }
 
   public int size() {
@@ -129,16 +122,6 @@ public class MyArrayList<E> {
     //    for(int i = 0; i < arr.length; i++) {
     //      arr[i] = elementData[i];
     //    }
-    return arr;
-  }
-
-  @SuppressWarnings("unchecked")
-  public E[] toArray(E[] arr) {
-    if(arr.length < size) {
-      arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), this.size);
-    }
-    System.arraycopy(this.elementData,
-        0, arr, 0, this.size);
     return arr;
   }
 }

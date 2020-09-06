@@ -33,16 +33,16 @@ import java.util.Arrays;
 // 19) 파라미터로 받은 배열에 값을 채워주는 toArray(E[])메서드를 추가한다.
 // 20) 항목의 개수보다 작은 크기의 배열을 전달할 때, 자동으로 새 배열을 만들도록 toArray()메서드 추가
 
-public class MyArrayList<E> {
+public class MyArrayList181920<E> {
   private final static int DEFAULT_CAPACITY = 5;
   private Object[] elementData;
   private int size;
 
-  public MyArrayList() {
+  public MyArrayList181920() {
     elementData = new Object[DEFAULT_CAPACITY];
   }
 
-  public MyArrayList(int initialCapacity) {
+  public MyArrayList181920(int initialCapacity) {
     if(initialCapacity < DEFAULT_CAPACITY) {
       elementData = new Object[DEFAULT_CAPACITY];
     } else {

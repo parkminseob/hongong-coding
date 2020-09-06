@@ -8,23 +8,21 @@ import com.practiceExample.LinkedList.MyLinkedList;
 // 3) Stack에서 제일 마지막에 추가한 값을 꺼내는 pop()메서드를 정의한다.
 // 4) Stack에서 제일 마지막에 입력한 값을 조회하는 peek()을 정의한다.
 // 5) 스택이 비어있는지 알려주는 empty()를 정의한다.
-// 6) Object.clone()을 오버라이딩 하기 : deep copy
-// 7) 제네릭 적용
-public class MyStack<E> extends MyLinkedList<E> implements Cloneable{
+public class MyStack5 extends MyLinkedList{
 
-  public E push(E item) {
+  public Object push(Object item) {
     add(item);
     return item;
   }
 
-  public E pop() {
+  public Object pop() {
     if(size() == 0) {
       throw new EmptyStackException();
     }
     return remove(size() - 1);
   }
 
-  public E peek() {
+  public Object peek() {
     if(size() == 0) {
       throw new EmptyStackException();
     }
@@ -33,16 +31,5 @@ public class MyStack<E> extends MyLinkedList<E> implements Cloneable{
 
   public boolean empty() {
     return this.size() == 0;
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  protected MyStack<E> clone() throws CloneNotSupportedException {
-    MyStack<E> newstack = new MyStack<>();
-    Object[] values = this.toArray();
-    for(Object value : values) {
-      newstack.push((E)value);
-    }
-    return newstack;
   }
 }

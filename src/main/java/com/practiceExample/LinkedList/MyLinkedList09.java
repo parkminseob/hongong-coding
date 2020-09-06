@@ -11,27 +11,29 @@ package com.practiceExample.LinkedList;
 // 7) 목록에서 특정 인덱스의 값을 제거하는 remove(int) 메서드 정의
 // 8) 목록에서 특정 인덱스의 값을 바꾸는 set(int, Object)메서드를 정의한다.
 // 9) 목록의 데이터를 새 배열에 담아 리턴하는 toArray()메서드를 정의한다.
+// 10) 인스턴스 필드에 대해 캡슐화를 적용한다.
+//     - 목록크기를 리턴하는 size()를 추가로 정의한다.
 public class MyLinkedList09 {
- 
+
   // Node 클래스란?
   // 목록에서 각 항목의 값을 보관하는 객체 역할을 수행한다.
   // 여러 개의 MyLinkedList 객체가 공유하는 클래스이므로
   // 스태틱으로 Node 클래스를 설계한다.
-  Node first; 
-  Node last;
-  int size; //목록크기 보관 
-  
+  private Node first; 
+  private Node last;
+  private int size; //목록크기 보관 
+
   static class Node{
     Object value;
     Node next;
-  
-  public Node() {}
-  
-  public Node(Object value) {
-    this.value = value;
+
+    public Node() {}
+
+    public Node(Object value) {
+      this.value = value;
+    }
   }
-  }
-  
+
   public boolean add(Object e) {
     Node node = new Node();
     node.value = e;
@@ -41,11 +43,11 @@ public class MyLinkedList09 {
       last.next = node;
     }
     last = node;
-    
+
     size++;
     return true;
   }
-  
+
   public Object get(int index) {
     if(index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
@@ -56,20 +58,20 @@ public class MyLinkedList09 {
     }
     return cursor.value;
   }
-  
+
   public void add(int index, Object element) {
     if(index < 0 || index > size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
     }
     size++;
     Node node = new Node(element);
-    
+
     if(index == 0) {
       node.next = first;
       first = node;
       return;
     }
-    
+
     Node cursor = this.first;
     for(int i = 1; i < index; i++) {
       cursor = cursor.next;
@@ -81,7 +83,7 @@ public class MyLinkedList09 {
       last = node;
     }
   }
-  
+
   public Object remove(int index) {
     if(index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
@@ -94,7 +96,7 @@ public class MyLinkedList09 {
       old.next = null;
       return old.value;
     }
-    
+
     Node cursor = first;
     for(int i = 1; i < index; i++) {
       cursor = cursor.next;
@@ -102,13 +104,13 @@ public class MyLinkedList09 {
     Node old = cursor.next;
     cursor.next = old.next;
     old.next = null;
-    
+
     if(cursor.next == null) {
       last = cursor;
     }
     return old.value;
   }
-  
+
   public Object set(int index, Object element) {
     if(index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("유효하지 않은 인덱스 값");
@@ -122,7 +124,7 @@ public class MyLinkedList09 {
 
     return old;
   }
-  
+
   public Object[] toArray() {
     Object[] arr = new Object[size];
     Node cursor = first;
@@ -131,6 +133,5 @@ public class MyLinkedList09 {
       cursor = cursor.next;
     }
     return arr;
-    
   }
 }
