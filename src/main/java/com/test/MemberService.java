@@ -1,4 +1,4 @@
-package com;
+package com.test;
 
 public class MemberService {
  boolean login(String id, String password) {
