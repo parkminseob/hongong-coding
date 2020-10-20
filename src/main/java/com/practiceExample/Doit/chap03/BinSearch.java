@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 // 이진 검색
 public class BinSearch {
-  // 요솟수가 n인 배열 a에서 key와 같은 요소를 이진 검색한다.
+  // 요솟수가 num인 배열 arr에서 key와 같은 요소를 이진 검색한다.
   static int binSearch(int[] arr, int num, int key) {
     int pl = 0; //검색 범위의 첫 인덱스
     int pr = num-1;
@@ -51,5 +51,6 @@ public class BinSearch {
     } else {
       System.out.println(key + "은(는) x[" + idx + "]에 있습니다.`" );
     }
+    scanner.close();
   }
 }
