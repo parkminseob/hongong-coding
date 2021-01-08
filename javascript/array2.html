@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var grades = {
+            'list' : {'egoing' : 10, 'k2' : 8, 'lp' : 20},
+            'show' : function() {
+                for(var name in this.list) {
+                    console.log(name, this.list[name]);
+                }
+                // 여기서 this는 이 함수를 소유하고있는 변수를 뜻한다.
+                // this = grades
+                console.log(this.list);
+            }
+        }
+        //alert(grades['list']);
+        grades.show();
+    </script>
+</body>
+</html>
